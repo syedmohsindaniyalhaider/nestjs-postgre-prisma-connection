@@ -10,7 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model RegisterUser {
+model User {
   id          Int     @default(autoincrement()) @id
   firstName   String  @unique
   lastName    String

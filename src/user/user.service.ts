@@ -1,32 +1,20 @@
 import { Injectable } from '@nestjs/common';
-import { RegisterUserDTO } from './dto/register-user.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { RegisterUserDto } from './dto/register-user.dto';
 
 @Injectable()
 export class UserService {
-  private users = [];
+  constructor(private prisma: PrismaService) {}
+
   async findAll() {
-    return [];
+    return this.prisma.user.findMany();
   }
-  async register(registerUserDto: RegisterUserDTO) {
-    const userDetails = {
-      firstName: 'codeexperts',
-      lastName: 'codeexperts',
-      phoneNumber: 'codeexperts',
-      landLine: '00-123-123-123',
-      address: 'codeexperts, UK',
-      language: 'english',
-    };
-    const updatedUsers = this.users.push({
-      data: { ...userDetails },
+
+  async register(registerUserDto: RegisterUserDto) {
+    return this.prisma.user.create({
+      data: {
+        ...registerUserDto,
+      },
     });
-    console.log('Here are the users::', updatedUsers);
-    // return {
-    //   firstName: 'Mohsin',
-    //   lastName: 'Haider',
-    //   phoneNumber: '1122',
-    //   landLine: '1122',
-    //   address: 'H#542,Chaklala Scheme 3,Rawalpindi',
-    //   language: 'urdu',
-    // };
   }
 }

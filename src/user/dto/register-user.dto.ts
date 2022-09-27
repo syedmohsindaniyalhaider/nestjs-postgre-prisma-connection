@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString } from 'class-validator';
 
-export class RegisterUserDTO {
+export class RegisterUserDto {
   @ApiProperty({
     example: 'codeexperts',
   })
@@ -29,7 +29,7 @@ export class RegisterUserDTO {
     example: '00-123-123-123',
   })
   @IsNotEmpty()
-  landLine: string;
+  landline: string;
 
   @ApiProperty({
     example: 'codeexperts, UK',
