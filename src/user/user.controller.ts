@@ -3,13 +3,13 @@ import {
   Get,
   Post,
   Body,
-  HttpCode,
+  Param,
   Res,
   HttpStatus,
 } from '@nestjs/common';
 import { RegisterUserDto } from './dto/register-user.dto';
 import { UserService } from './user.service';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
 import { UsersDto } from './dto/users.dto';
 
@@ -18,27 +18,33 @@ import { UsersDto } from './dto/users.dto';
 export class UserController {
   constructor(private userService: UserService) {}
   @ApiResponse({
-    status: 200,
+    status: HttpStatus.OK,
     description: 'All Users',
   })
   @ApiResponse({
-    status: 400,
+    status: HttpStatus.NOT_FOUND,
     description: 'Error',
   })
   @Get('/')
   findAll(@Body() usersDto: UsersDto) {
     return this.userService.findAll();
   }
+
+  @Get(':id')
+  findOne(@Param('id') id: number): object {
+    console.log(id);
+    return this.userService.findOne(id);
+  }
+
   @ApiResponse({
-    status: 201,
+    status: HttpStatus.CREATED,
     description: 'User Successfully Registered',
   })
   @ApiResponse({
-    status: 400,
+    status: HttpStatus.CREATED,
     description: 'Error',
   })
   @Post('/register')
-  // @HttpCode(201)
   register(@Res() res: Response, @Body() registerUserDto: RegisterUserDto) {
     this.userService.register(registerUserDto);
     res
