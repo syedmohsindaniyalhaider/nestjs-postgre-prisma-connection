@@ -51,5 +51,5 @@ export class UsersDto {
     type: UserDto,
     isArray: true,
   })
-  users: [];
+  users: UserDto[];
 }
