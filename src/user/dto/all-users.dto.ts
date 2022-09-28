@@ -46,7 +46,7 @@ class UserDto {
   language: string;
 }
 
-export class UsersDto {
+export class AllUsersDto {
   @ApiProperty({
     type: UserDto,
     isArray: true,

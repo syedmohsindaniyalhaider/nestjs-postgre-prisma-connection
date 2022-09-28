@@ -6,11 +6,11 @@ import { RegisterUserDto } from './dto/register-user.dto';
 export class UserService {
   constructor(private prisma: PrismaService) {}
 
-  async findAll() {
+  async findAllUsers() {
     return this.prisma.user.findMany();
   }
 
-  async findOne(id: number) {
+  async findUserById(id: number) {
     try {
       const user = await this.prisma.user.findUnique({
         where: {
@@ -23,7 +23,7 @@ export class UserService {
     }
   }
 
-  async register(registerUserDto: RegisterUserDto) {
+  async registerUser(registerUserDto: RegisterUserDto) {
     return await this.prisma.user.create({
       data: {
         ...registerUserDto,
