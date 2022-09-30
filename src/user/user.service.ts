@@ -10,11 +10,11 @@ export class UserService {
     return this.prisma.user.findMany();
   }
 
-  async findUserById(id: number) {
+  async findUserById(userId: number) {
     try {
       const user = await this.prisma.user.findUnique({
         where: {
-          id: +id,
+          id: +userId,
         },
       });
       return user;
