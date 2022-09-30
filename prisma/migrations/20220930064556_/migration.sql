@@ -3,6 +3,7 @@ CREATE TABLE "RegisterUser" (
     "id" SERIAL NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
+    "confirmPassword" TEXT NOT NULL,
 
     CONSTRAINT "RegisterUser_pkey" PRIMARY KEY ("id")
 );
