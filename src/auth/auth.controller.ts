@@ -13,14 +13,15 @@ export class AuthController {
     description: 'Success',
   })
   @ApiResponse({
+    status: HttpStatus.SEE_OTHER,
+    description: 'User already exists',
+  })
+  @ApiResponse({
     status: HttpStatus.NOT_FOUND,
     description: 'Error',
   })
   @Post('/register')
   registerUser(@Res() res: Response, @Body() registerUserDto: RegisterUserDto) {
-    this.authService.registerUser(registerUserDto);
-    res
-      .status(HttpStatus.CREATED)
-      .send({ message: 'User Successfully Registered' });
+    this.authService.registerUser(res, registerUserDto);
   }
 }
