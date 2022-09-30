@@ -10,9 +10,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model RegisterUser {
+  id              Int    @id @default(autoincrement())
+  email           String
+  password        String
+  confirmPassword String
+}
+
 model User {
-  id          Int     @default(autoincrement()) @id
-  firstName   String  @unique
+  id          Int     @id @default(autoincrement())
+  firstName   String
   lastName    String
   phoneNumber String
   landline    String

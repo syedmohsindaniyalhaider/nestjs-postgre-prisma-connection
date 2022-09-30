@@ -1,11 +1,12 @@
-/*
-  Warnings:
+-- CreateTable
+CREATE TABLE "RegisterUser" (
+    "id" SERIAL NOT NULL,
+    "email" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
+    "confirmPassword" TEXT NOT NULL,
 
-  - You are about to drop the `RegisterUser` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropTable
-DROP TABLE "RegisterUser";
+    CONSTRAINT "RegisterUser_pkey" PRIMARY KEY ("id")
+);
 
 -- CreateTable
 CREATE TABLE "User" (
@@ -19,6 +20,3 @@ CREATE TABLE "User" (
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
-
--- CreateIndex
-CREATE UNIQUE INDEX "User_firstName_key" ON "User"("firstName");
